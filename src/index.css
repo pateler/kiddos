@@ -1,0 +1,236 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 40% 98%;
+    --foreground: 222.2 84% 4.9%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+
+    --primary: 221.2 83.2% 53.3%;
+    --primary-foreground: 210 40% 98%;
+
+    --secondary: 60 100% 50%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+
+    --accent: 262 60% 50%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 221.2 83.2% 53.3%;
+
+    --radius: 1rem;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+
+    --popover: 222.2 84% 4.9%;
+    --popover-foreground: 210 40% 98%;
+
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 212.7 26.8% 83.9%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-nunito;
+    font-family: 'Nunito', sans-serif;
+    -webkit-tap-highlight-color: transparent;
+    overscroll-behavior-y: none;
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  textarea {
+    @apply appearance-none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+  }
+  
+  @media (max-width: 768px) {
+    button, a, input[type="submit"] {
+      @apply min-h-[44px] min-w-[44px];
+    }
+  }
+}
+
+@layer components {
+  .kiddo-card {
+    @apply bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1 overflow-hidden border-2;
+  }
+
+  .kiddo-button {
+    @apply rounded-full font-bold py-3 px-6 text-white transform transition-all duration-300 hover:scale-105 shadow-md hover:shadow-lg;
+  }
+
+  .kiddo-subject-card {
+    @apply flex flex-col items-center justify-center p-6 rounded-3xl transition-all duration-300 transform hover:scale-105 text-white font-bold text-lg;
+  }
+
+  .kiddo-chapter-item {
+    @apply flex items-center p-4 rounded-2xl mb-3 transition-all duration-300 hover:scale-102 shadow-sm hover:shadow-md;
+  }
+
+  .kiddo-container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  .kiddo-animated-button {
+    @apply rounded-full font-bold py-3 px-6 text-white transform transition-all duration-300 shadow-md animate-bounce-slow;
+  }
+  
+  .kiddo-floating-icon {
+    @apply animate-bounce-slow inline-block;
+  }
+  
+  .kiddo-wiggle {
+    @apply animate-wiggle;
+  }
+  
+  .kiddo-card-hover {
+    @apply transition-all duration-300 hover:rotate-2 hover:scale-105;
+  }
+  
+  .mobile-nav-item {
+    @apply flex items-center gap-2 py-3 px-4 rounded-lg hover:bg-gray-100 transition-colors;
+  }
+  
+  .mobile-bottom-nav {
+    @apply fixed bottom-0 left-0 right-0 bg-white border-t border-gray-200 flex justify-around items-center py-2 z-50;
+  }
+  
+  .mobile-menu-item {
+    @apply flex flex-col items-center justify-center p-2;
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom, 16px);
+  }
+  
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top, 16px);
+  }
+}
+
+.kiddo-bg-pattern {
+  background-color: #f8f9fa;
+  background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234361ee' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+@keyframes pop {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.kiddo-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.kiddo-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.3) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  transform: rotate(30deg);
+  animation: shine 4s infinite;
+}
+
+@keyframes shine {
+  0% { transform: rotate(30deg) translateX(-100%); }
+  100% { transform: rotate(30deg) translateX(100%); }
+}
+
+/* Mobile optimizations */
+/* Prevent text size adjustment on orientation change */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+/* Smooth scrolling on mobile devices */
+@media (max-width: 768px) {
+  .smooth-scroll {
+    scroll-behavior: smooth;
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  body {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+  }
+  
+  .touch-feedback {
+    @apply relative overflow-hidden;
+  }
+  
+  .touch-feedback::after {
+    content: '';
+    @apply absolute inset-0 bg-current opacity-0 pointer-events-none transition-opacity;
+  }
+  
+  .touch-feedback:active::after {
+    @apply opacity-10;
+  }
+}
