@@ -1,7 +1,12 @@
+import multer from 'multer';
+import path from 'path';
+import fs from 'fs';
+import { dirname } from 'path';
+import { fileURLToPath } from 'url';
 
-const multer = require('multer');
-const path = require('path');
-const fs = require('fs');
+// Recreate __dirname
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = dirname(__filename);
 
 // Create uploads directory if it doesn't exist
 const uploadsDir = path.join(__dirname, '../uploads');
@@ -22,7 +27,6 @@ const storage = multer.diskStorage({
 
 // File filter to only accept video files
 const fileFilter = (req, file, cb) => {
-  // Accept video files only
   if (file.mimetype.startsWith('video/')) {
     cb(null, true);
   } else {
@@ -34,8 +38,8 @@ const upload = multer({
   storage,
   fileFilter,
   limits: {
-    fileSize: 100 * 1024 * 1024 // 100MB file size limit
+    fileSize: 100 * 1024 * 1024 // 100MB
   }
 });
 
-module.exports = upload;
+export default upload;

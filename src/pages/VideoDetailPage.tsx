@@ -1,7 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import Layout from '@/components/Layout';
+import { AppLayout } from '@/components/AppLayout';
 import VideoPlayer from '@/components/VideoPlayer';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
@@ -99,28 +99,28 @@ const VideoDetailPage = () => {
 
   if (loading) {
     return (
-      <Layout>
+      <AppLayout>
         <div className="flex justify-center items-center h-96">
           <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-brand-DEFAULT"></div>
         </div>
-      </Layout>
+      </AppLayout>
     );
   }
 
   if (!video) {
     return (
-      <Layout>
+      <AppLayout>
         <div className="text-center py-12">
           <h2 className="text-2xl font-bold text-gray-700">Video not found</h2>
         </div>
-      </Layout>
+      </AppLayout>
     );
   }
 
   const videoUrl = videoService.getStreamUrl(id || '');
 
   return (
-    <Layout>
+    <AppLayout>
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Video player and details */}
         <div className="lg:col-span-2">
@@ -199,7 +199,7 @@ const VideoDetailPage = () => {
           </Card>
         </div>
       </div>
-    </Layout>
+    </AppLayout>
   );
 };
 

@@ -1,10 +1,10 @@
+import jwt from 'jsonwebtoken';
+import User from '../models/User.js';
 
-const jwt = require('jsonwebtoken');
-const User = require('../models/User');
 
 const JWT_SECRET = process.env.JWT_SECRET || 'videovoyage-secret-key';
 
-exports.protect = async (req, res, next) => {
+export const protect = async (req, res, next) => {
   let token;
 
   if (req.headers.authorization && req.headers.authorization.startsWith('Bearer')) {
@@ -30,7 +30,7 @@ exports.protect = async (req, res, next) => {
   }
 };
 
-exports.admin = (req, res, next) => {
+export const admin = (req, res, next) => {
   if (req.user && req.user.role === 'admin') {
     next();
   } else {
@@ -38,7 +38,7 @@ exports.admin = (req, res, next) => {
   }
 };
 
-exports.generateToken = (id) => {
+export const generateToken = (id) => {
   return jwt.sign({ id }, JWT_SECRET, {
     expiresIn: '30d'
   });

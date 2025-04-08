@@ -1,12 +1,11 @@
-
-const fs = require('fs');
-const path = require('path');
-const Video = require('../models/Video');
+import fs from 'fs';
+import path from 'path';
+import Video from '../models/Video.js';
 
 // @desc    Upload a video
 // @route   POST /api/videos
 // @access  Private
-exports.uploadVideo = async (req, res) => {
+export const uploadVideo = async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ success: false, message: 'No video file uploaded' });
@@ -40,14 +39,12 @@ exports.uploadVideo = async (req, res) => {
 // @desc    Get all videos (with filter options)
 // @route   GET /api/videos
 // @access  Public/Private (public videos for all, private for authorized)
-exports.getVideos = async (req, res) => {
+export const getVideos = async (req, res) => {
   try {
     let query = {};
 
-    // If not admin and not requesting own videos
     if (!req.user || req.user.role !== 'admin') {
       if (req.user) {
-        // Regular user can see public videos or their own videos
         query = {
           $or: [
             { isPublic: true },
@@ -55,7 +52,6 @@ exports.getVideos = async (req, res) => {
           ]
         };
       } else {
-        // Non-authenticated user can only see public videos
         query = { isPublic: true };
       }
     }
@@ -78,7 +74,7 @@ exports.getVideos = async (req, res) => {
 // @desc    Get single video
 // @route   GET /api/videos/:id
 // @access  Public/Private (depends on video visibility)
-exports.getVideoById = async (req, res) => {
+export const getVideoById = async (req, res) => {
   try {
     const video = await Video.findById(req.params.id)
       .populate('uploadedBy', 'username');
@@ -111,7 +107,7 @@ exports.getVideoById = async (req, res) => {
 // @desc    Update video details
 // @route   PUT /api/videos/:id
 // @access  Private (owner or admin)
-exports.updateVideo = async (req, res) => {
+export const updateVideo = async (req, res) => {
   try {
     let video = await Video.findById(req.params.id);
 
@@ -150,7 +146,7 @@ exports.updateVideo = async (req, res) => {
 // @desc    Delete video
 // @route   DELETE /api/videos/:id
 // @access  Private (owner or admin)
-exports.deleteVideo = async (req, res) => {
+export const deleteVideo = async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
 
@@ -186,7 +182,7 @@ exports.deleteVideo = async (req, res) => {
 // @desc    Stream video
 // @route   GET /api/videos/:id/stream
 // @access  Public/Private (depends on video visibility)
-exports.streamVideo = async (req, res) => {
+export const streamVideo = async (req, res) => {
   try {
     const video = await Video.findById(req.params.id);
 

@@ -6,6 +6,7 @@ import { videoService } from '@/services/api';
 import { useToast } from '@/components/ui/use-toast';
 import { Input } from '@/components/ui/input';
 import { SearchIcon } from 'lucide-react';
+import { AppLayout } from '@/components/AppLayout';
 
 const VideosPage = () => {
   const [videos, setVideos] = useState<any[]>([]);
@@ -42,7 +43,7 @@ const VideosPage = () => {
     : videos;
 
   return (
-    <Layout>
+    <AppLayout>
       <div className="space-y-6">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold">Videos</h1>
@@ -59,7 +60,7 @@ const VideosPage = () => {
 
         <VideoGrid videos={filteredVideos} loading={loading} />
       </div>
-    </Layout>
+    </AppLayout>
   );
 };
 

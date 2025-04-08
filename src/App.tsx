@@ -13,6 +13,7 @@ import NotFound from "./pages/NotFound";
 import HomePage from "./pages/HomePage";
 import VideosPage from "./pages/VideosPage";
 import VideoDetailPage from "./pages/VideoDetailPage";
+import VideoEditPage from "./pages/VideoEditPage";
 import UploadPage from "./pages/UploadPage";
 import AdminPage from "./pages/AdminPage";
 import LoginPage from "./pages/LoginPage";
@@ -27,7 +28,8 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Index />} />
+          {/* <Route path="/" element={<Index />} /> */}
+          <Route path="/" element={<HomePage />} />
           <Route path="/classes" element={<ClassesPage />} />
           <Route path="/classes/:classId" element={<SubjectsPage />} />
           <Route path="/classes/:classId/subjects" element={<SubjectsPage />} />
@@ -39,6 +41,7 @@ const App = () => (
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/videos" element={<VideosPage />} />
           <Route path="/videos/:id" element={<VideoDetailPage />} />
+          <Route path="/videos/:id/edit" element={<VideoEditPage />} />
           <Route path="/upload" element={<UploadPage />} />
           <Route path="/admin" element={<AdminPage />} />
           <Route path="/login" element={<LoginPage />} />

@@ -2,6 +2,7 @@
 import React, { useEffect, useRef } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
+import '../css/video-player.css';
 import { cn } from '@/lib/utils';
 
 interface VideoPlayerProps {

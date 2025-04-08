@@ -1,11 +1,11 @@
+import User from '../models/User.js';
+import { generateToken } from '../middleware/auth.js';
 
-const User = require('../models/User');
-const { generateToken } = require('../middleware/auth');
 
 // @desc    Register a new user
 // @route   POST /api/users
 // @access  Public
-exports.registerUser = async (req, res) => {
+export const registerUser = async (req, res) => {
   try {
     const { username, email, password } = req.body;
 
@@ -47,7 +47,7 @@ exports.registerUser = async (req, res) => {
 // @desc    Auth user & get token
 // @route   POST /api/users/login
 // @access  Public
-exports.loginUser = async (req, res) => {
+export const loginUser = async (req, res) => {
   try {
     const { email, password } = req.body;
 
@@ -82,7 +82,7 @@ exports.loginUser = async (req, res) => {
 // @desc    Get user profile
 // @route   GET /api/users/profile
 // @access  Private
-exports.getUserProfile = async (req, res) => {
+export const getUserProfile = async (req, res) => {
   try {
     const user = await User.findById(req.user._id).select('-password');
     
@@ -103,7 +103,7 @@ exports.getUserProfile = async (req, res) => {
 // @desc    Create admin user (for initial setup)
 // @route   POST /api/users/create-admin
 // @access  Public (would normally be secured in production)
-exports.createAdmin = async (req, res) => {
+export const createAdmin = async (req, res) => {
   try {
     const { username, email, password, adminKey } = req.body;
     
